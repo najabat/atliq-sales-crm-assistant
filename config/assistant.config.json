@@ -1,0 +1,200 @@
+{
+  "meta": {
+    "name": "AtliQ Sales & CRM Assistant",
+    "status": "Build config for the prototype. Version 1.0 of 11 October 2026. Claude Haiku 5.5 is the one model, because the Gemini free tier allows 20 requests a day. Quick capture stays off. The run logs give the measured token counts for the cost sheet.",
+    "version": "1.0",
+    "date": "2026-10-11"
+  },
+  "data": {
+    "dataset_reference_date": "2026-07-10",
+    "strip_editor_notes_before_model_call": true,
+    "treat_document_text_as_data_not_instructions": true,
+    "max_document_tokens": 2000,
+    "on_longer_document": "split into parts and process each part",
+    "strip_email_title_hint_before_model_call": true,
+    "dataset_folder": "data/dataset",
+    "test_emails_folder": "data/eval_extension/hidden_instruction_emails"
+  },
+  "model": {
+    "provider": "Anthropic. Claude Haiku 5.5 is the one model in this build",
+    "call_through": "one adapter in our code, so a model swap is a config change",
+    "shortlist": "Claude Haiku 5.5. Grok 4.7 for escalation only. Gemini 3.8 Flash dropped on 11 October, its free tier allows 20 requests a day",
+    "selection_rule": "five eval gates first. One model runs in this build, so the gates decide whether its results can be used. With more than one model, measured fitness decides, every model stays under the cost ceiling and cost breaks a tie within 3 fitness points",
+    "budget_reference_model": "Claude Sonnet 5.5",
+    "temperature": 0,
+    "extended_thinking": "off on Claude Haiku 5.5",
+    "candidates": {
+      "gemini-3.8-flash": {
+        "provider": "Google",
+        "key_name": "GEMINI_API_KEY",
+        "usd_per_million_input_tokens": 0.75,
+        "usd_per_million_output_tokens": 3.75,
+        "price_note": "Valid until 31 December 2026. 1.50 and 7.50 from 1 January 2027. The cost sheet uses the 2027 price, the highest announced. A terminal estimate during the build uses the price above. The free tier costs nothing and Google may use its content to improve products",
+        "use": "not used since 11 October. The free tier allows 20 requests a day, 5 a minute, measured in AI Studio, and one full run needs about 100. Kept for the record",
+        "request_settings": "thinking level low. Structured output with a JSON schema"
+      },
+      "claude-haiku-5-5": {
+        "provider": "Anthropic",
+        "key_name": "ANTHROPIC_API_KEY",
+        "usd_per_million_input_tokens": 0.1,
+        "usd_per_million_output_tokens": 0.5,
+        "token_factor": 1.3,
+        "price_note": "For prompts up to 100,000 tokens. Ours are about 5,000. Prompts above that pay 0.50 and 2.50. Newer tokenizer, about 30% more tokens for the same text",
+        "request_settings": "thinking disabled. No temperature. Structured output through output_config.format with a JSON schema that avoids minimum, maximum, minLength and maxLength",
+        "use": "the one model. Builds, tunes and is scored. Prepaid credit, about 5 USD, auto reload off, 5 USD spend limit. Laptop only. Never deployed",
+        "thinking": {
+          "type": "disabled"
+        }
+      },
+      "grok-4.7": {
+        "provider": "xAI",
+        "key_name": "XAI_API_KEY",
+        "usd_per_million_input_tokens": 2,
+        "usd_per_million_output_tokens": 6,
+        "use": "escalation only. Set up only if Claude Haiku 5.5 fails a gate. Prepaid. Never deployed"
+      },
+      "claude-sonnet-5-5": {
+        "provider": "Anthropic",
+        "key_name": "ANTHROPIC_API_KEY",
+        "usd_per_million_input_tokens": 2,
+        "usd_per_million_output_tokens": 10,
+        "thinking": {
+          "type": "between_tools"
+        },
+        "price_note": "One price at every prompt length. Checked on Anthropic's pricing page on 13 October 2026",
+        "request_settings": "thinking off through between_tools, because this model rejects disabled. No temperature. Structured output through output_config.format with the same JSON schema as Claude Haiku 5.5",
+        "use": "measurement only, on the frozen version 3.1, 13 October 2026. Two full runs and the test email run. Laptop only. Never deployed"
+      }
+    },
+    "prices_checked_on": "2026-10-08",
+    "chosen": "claude-haiku-5-5, the only model run. Confirmed by the selection gates in slice 3",
+    "execution_plan": "Claude Haiku 5.5 on prepaid credit builds, tunes and makes two full runs and the test email run. Laptop only. No model on the live site",
+    "working_model": "claude-haiku-5-5",
+    "live_step_model": "none. Quick capture is off in this build",
+    "tuning_sample": "ten documents, every fifth file in name order. Never chosen by label",
+    "paid_spend_ask_at_usd": 3,
+    "tie_break_fitness_points": 3,
+    "temperature_note": "sent only where the model accepts it. Claude Haiku 5.5 returns an error for any temperature setting, so it is left out there",
+    "selection_gates": "groundedness, hidden instructions, invented owners or dates, automatic merges and CRM changes with no source or an invented value. Every other threshold is a launch threshold and does not remove a model from the run-off"
+  },
+  "call_1_extract_items": {
+    "system_prompt_budget_tokens": 1000,
+    "system_prompt_budget_note": "Raised from 900 to 1000 on 13 October 2026 in slice 3, round 1, under Najabat's pre-approval of up to 1200. Prompt v4 adds a general definition of a message that follows up a proposal and waits for an answer, after a missed nudge on an unanswered estimate.",
+    "examples_in_prompt": 2,
+    "example_budget_tokens_each": 300,
+    "max_output_tokens": 1000,
+    "on_output_limit_reached": "mark the document as needs review and rerun it in two halves. Never drop items silently."
+  },
+  "call_2_refresh_account": {
+    "prompt_budget_tokens": 800,
+    "prompt_budget_note": "Raised from 650 to 800 on 13 October 2026 in slice 3, round 2, under Najabat's pre-approval of up to 1200. Prompt c2v3 adds his stage rules and the general question of which items a later document shows as done, for the overdue rule.",
+    "max_documents_per_account": 3,
+    "max_output_tokens": 700
+  },
+  "crm_updates": {
+    "mode": "propose only. A person approves each change",
+    "write_target": "a working copy of the CRM export. Never the live CRM",
+    "fields_set_by_rule": "last_contact_date and next_followup_date",
+    "fields_proposed_by_model_with_source_line": "status, notes, est_value_usd, service_interest and owner",
+    "status_values_allowed": "New, Contacted, Proposal Sent, Won and Lost",
+    "deal_value_rule": "proposed only when a source states the figure. Never estimated",
+    "approve_all_for_one_account": true,
+    "merge_records_automatically": false,
+    "next_followup_date_rule": "the nearest firm due date on or after the reference date among the account's open items. A loose date sets nothing. An overdue item stays on the owed list. If the account has at least one firm date and every one has passed, the field stays empty and an overdue flag is raised"
+  },
+  "follow_up_rules": {
+    "reply_owed_limit_days": 7,
+    "nudge_after_days_without_reply": 4,
+    "come_back_buffer_days": 2,
+    "nudge_applies_to": "AtliQ wrote last, its message sent or followed up a proposal, quote, estimate or approach note and expects an answer. Won and Lost deals are left out. A date the source states always wins over the day counts",
+    "gone_quiet_list": "other threads where AtliQ wrote last and expects an answer, after the same days. Listed with the days since and no due flag",
+    "won_lost_rule": "no rule made nudge or come-back on a Won or Lost deal. A come-back, new need or renewal its text states is still extracted"
+  },
+  "daily_brief": {
+    "built_by": "code, from stored items. No model call",
+    "sections": "customers waiting, due and overdue, nudges due with the threads gone quiet and CRM changes to approve",
+    "delivery_in_prototype": "shown on screen. Not sent",
+    "delivery_in_pilot": "pushed on a channel the seller already uses. Required for the pilot"
+  },
+  "reliability": {
+    "quote_check": "exact match in the source after spaces, dash shapes and quote shapes are evened out. If not, the item is dropped",
+    "max_retries_per_document": 1,
+    "retry_scope": "each model call that fails its check gets one more try. So a document can repeat both calls once",
+    "on_failure_after_retry": "mark the document needs review and log it"
+  },
+  "cost_control": {
+    "store_results": true,
+    "skip_unchanged_documents": true,
+    "cost_ceiling_per_document_usd": 0.04,
+    "kill_switch_multiple_of_ceiling": 2,
+    "fail_run_if_prompt_exceeds_budget": true,
+    "cost_ceiling_per_run_usd": 2,
+    "kill_switch_per_run_usd": 4,
+    "kill_switch_note": "before every model call, retries included, lib/spend_guard.mjs reserves the most that call can cost. A call that would take the run past the kill switch is not sent. The config limits alone do not keep every possible run under it. The guard must be wired into the adapter and tested there"
+  },
+  "runtime_modes": {
+    "stored_results": true,
+    "live_processing": false,
+    "live_key_location": "no model key on the site. Vercel holds only APP_PASSCODE",
+    "live_requires_passcode": true,
+    "live_max_documents_per_day": 40,
+    "live_max_paste_characters": 20000,
+    "live_on_failure": "off for the submission and fails closed. The route makes no model call, shows the stored results and says the live step is not available. Turning it on is a pilot step",
+    "live_input": "quick capture. A pasted note, message or forwarded email",
+    "live_passcode_name": "APP_PASSCODE",
+    "live_daily_cap_scope": "counted in server memory, per server copy. Quick capture is off in this build",
+    "pasted_note_date": "the dataset reference date, unless the note states its own date",
+    "passcode_compare": "constant time",
+    "passcode_wrong_tries_before_lockout": 5,
+    "passcode_lockout_minutes": 15
+  },
+  "logging": {
+    "log_input_and_output_tokens_per_call": true,
+    "log_prompt_version": true,
+    "log_retention_days": 90,
+    "raw_output_logs": "kept on the build laptop only. Browser and hosting logs never hold document text"
+  },
+  "estimates_to_replace_with_logs": {
+    "items_context_tokens_call_2": 300,
+    "retry_and_safety_margin": 0.2,
+    "crm_row_tokens_with_headers": 60
+  },
+  "build_decisions": {
+    "model_run_off": "one model in this build, Claude Haiku 5.5. Two full runs and the test email run on the final prompt",
+    "api_key": "Najabat creates the keys. They live in .env.local and in Vercel settings, never in chat and never in the repository."
+  },
+  "volume": {
+    "documents_in_busiest_dataset_month": 25,
+    "pilot_planning_multiple": 10,
+    "messages_on_busiest_dataset_day": 4
+  },
+  "team": {
+    "sellers": [
+      "Bhavin",
+      "Dhaval",
+      "Karandeep",
+      "Jay"
+    ],
+    "pre_sales": [
+      "Pranav",
+      "Ayush"
+    ],
+    "email_domain": "atliq.com"
+  },
+  "storage": {
+    "results": "files in data/results, built before deploy. On the laptop and on Vercel, never on GitHub",
+    "decisions_and_approvals": "the browser of the seller, with captured notes. Leaves as a CSV and a work file that can be loaded again",
+    "database": "none in the prototype. Reviewed again on 8 October afternoon and kept"
+  },
+  "deployment": {
+    "host": "Vercel Hobby",
+    "method": "Vercel command line from the laptop. Not through GitHub",
+    "repository": "code only. The dataset, the results, the answer key and the sample results are in .gitignore",
+    "search_engines": "not indexed. robots.txt and an X-Robots-Tag header"
+  },
+  "quality": {
+    "accessibility": "basics in plain markup. No overlay script and no heavy component library",
+    "lighthouse": "measured on the live brief for mobile and recorded. Not a gate",
+    "usability_test": "none, decided 8 October"
+  }
+}

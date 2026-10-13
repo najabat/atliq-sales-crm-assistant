@@ -1,0 +1,198 @@
+/* Colours from brand/theme.json. No component library. Plain markup does the work. */
+:root {
+  --navy: #061033;
+  --purple: #602be9;
+  --purple-button: #5a39eb;
+  --lavender: #ded9ef;
+  --lavender-light: #edeaf7;
+  --amber: #ffe699;
+  --green: #2e8b57;
+  --green-text: #23774a;
+  --red-light: #f8cbad;
+  --grey: #f2f2f2;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.45;
+  color: var(--navy);
+  background: #fff;
+}
+
+a { color: var(--purple); }
+:focus-visible { outline: 3px solid var(--purple); outline-offset: 2px; }
+.band :focus-visible { outline-color: var(--amber); }
+
+.skip { position: absolute; left: -9999px; top: 0; padding: 10px 14px; background: var(--amber); color: var(--navy); z-index: 10; }
+.skip:focus { left: 8px; top: 8px; }
+
+/* Header band. Navy, never white. */
+.band { background: var(--navy); color: #fff; padding: 10px 16px 0; }
+.band-top { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; }
+.brand-row, .meta-row { display: flex; align-items: center; gap: 10px; }
+.logo-plate { display: inline-flex; padding: 4px 8px; background: #fff; border-radius: 4px; }
+.product { font-weight: 700; }
+.label { padding: 2px 8px; border: 1px solid #fff; border-radius: 999px; font-size: 0.85rem; }
+.band .date-chip { background: var(--lavender); color: var(--navy); border-color: var(--lavender); margin-left: 0; }
+.name-picker { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-left: auto; }
+.name-picker label { font-weight: 600; }
+.name-picker .hint { color: #d8d8ef; font-size: 0.8rem; }
+.band nav ul { display: flex; flex-wrap: wrap; gap: 4px; list-style: none; margin: 8px 0 0; padding: 0; }
+.band nav a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 12px; color: #fff; text-decoration: none; border-radius: 6px 6px 0 0; }
+.band nav a:hover { background: rgba(255, 255, 255, 0.12); text-decoration: underline; }
+/* The screen you are on: a clear underline bar and a lighter tab, not colour alone. */
+.band nav a.current { background: rgba(255, 255, 255, 0.16); font-weight: 700; box-shadow: inset 0 -4px 0 var(--amber); }
+
+main { padding: 16px; max-width: 1000px; margin: 0 auto; }
+h1 { margin: 8px 0 12px; font-size: 1.6rem; }
+h2 { font-size: 1.1rem; }
+h3 { font-size: 1rem; margin: 16px 0 6px; }
+section { margin: 20px 0; }
+.small { font-size: 0.9rem; }
+.hint { font-size: 0.85rem; color: #444; }
+.run { color: #444; }
+
+/* Controls. Tap targets at least 44 pixels high. */
+button, select, input, textarea, .button-link {
+  font: inherit; min-height: 44px; border-radius: 6px; border: 1px solid #6b6f86; padding: 6px 12px; color: var(--navy); background: #fff;
+}
+button { cursor: pointer; background: var(--lavender-light); border-color: var(--purple-button); }
+button:hover:not(:disabled) { background: var(--lavender); }
+button.primary { background: var(--purple-button); color: #fff; font-weight: 600; }
+button.primary:hover:not(:disabled) { background: var(--purple); }
+button.danger { background: var(--red-light); border-color: #a33; }
+button:disabled { opacity: 0.55; cursor: not-allowed; }
+.button-link { display: inline-flex; align-items: center; background: var(--purple-button); color: #fff; text-decoration: none; font-weight: 600; border: 0; }
+textarea { width: 100%; }
+input[type="checkbox"], input[type="radio"] { min-height: auto; width: 22px; height: 22px; }
+input[type="file"] { display: block; margin: 6px 0; }
+
+/* Chips always carry a word, so meaning never rests on colour alone. */
+/* Chips sit on the middle of the text line beside them. */
+.chip { display: inline-flex; align-items: center; vertical-align: middle; line-height: 1.3; margin: 0 6px 0 4px; padding: 1px 8px;
+  border-radius: 999px; border: 1px solid var(--navy); font-size: 0.8rem; background: #fff; color: var(--navy); white-space: nowrap; position: relative; top: -1px; }
+.chips .chip { margin: 2px 6px 2px 0; top: 0; }
+.verdict { display: block; margin-top: 4px; }
+.verdict .chip { margin: 0; top: 0; }
+.chip.amber { background: var(--amber); }
+.chip.red { background: var(--red-light); }
+.chip.green { background: #d9efe2; border-color: var(--green); color: var(--green-text); }
+.chip.ai { background: var(--lavender); }
+.chip[class*="type-"] { background: var(--lavender); font-weight: 600; }
+
+.notice { padding: 10px 14px; background: var(--amber); border-radius: 6px; }
+.summary-cards ul { list-style: none; margin: 0 0 20px; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.summary-card { display: flex; flex-direction: column; gap: 2px; min-height: 44px; height: 100%; padding: 12px 14px; background: var(--lavender-light);
+  border: 1px solid var(--lavender); border-left: 4px solid var(--purple); border-radius: 6px; color: var(--navy); text-decoration: none; }
+.summary-card:hover { background: var(--lavender); }
+.summary-n { font-size: 1.8rem; font-weight: 700; line-height: 1.1; }
+.summary-title { font-weight: 700; }
+.summary-hint { font-size: 0.85rem; text-decoration: underline; color: var(--purple); }
+@media (max-width: 640px) { .summary-cards ul { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.site-footer { margin-top: 32px; padding: 14px 16px; background: var(--grey); font-size: 0.85rem; }
+.site-footer p { margin: 0 auto; max-width: 968px; }
+.expect { margin: 0 0 20px; padding: 12px 16px; background: var(--lavender-light); border-left: 4px solid var(--purple); border-radius: 6px; }
+.expect h2 { margin: 0 0 6px; font-size: 1.15rem; }
+.expect ul { margin: 0 0 6px; padding-left: 20px; }
+.notice.error { background: var(--red-light); border: 1px solid #a33; }
+.tile { padding: 16px; background: var(--navy); color: #fff; border-radius: 8px; }
+.tile .big { margin: 0 0 8px; font-size: 1.4rem; }
+.tile p { margin: 4px 0; }
+.band-sub { margin: 0 0 8px; padding: 8px 12px; background: var(--lavender); border-radius: 4px; }
+
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; }
+th, td { padding: 10px 8px; text-align: left; border-bottom: 1px solid var(--lavender); vertical-align: top; }
+thead th { background: var(--lavender); }
+
+.flags { padding-left: 20px; }
+.switch { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; border: 1px solid var(--lavender); border-radius: 6px; padding: 6px 12px; }
+.switch label { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; }
+.filters { display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: flex-end; margin: 8px 0; }
+.filters label { display: flex; flex-direction: column; gap: 4px; font-weight: 600; }
+.filters label.check { flex-direction: row; align-items: center; min-height: 44px; }
+
+/* One item card and one source panel, reused everywhere. */
+.card-list { list-style: none; padding: 0; margin: 0; }
+.item-card, .change-card { border: 1px solid var(--lavender); border-left: 6px solid var(--purple-button); border-radius: 8px; padding: 12px 14px; margin: 10px 0; background: #fff; }
+.item-card.state-closed, .item-card.state-dismissed { border-left-color: #8a8ea3; background: var(--grey); }
+.item-card.state-confirmed { border-left-color: var(--green); }
+.change-card.decision-approved, .change-card.decision-edited { border-left-color: var(--green); }
+.change-card.decision-rejected { border-left-color: #8a8ea3; background: var(--grey); }
+.item-summary { font-weight: 600; margin: 6px 0; }
+.item-facts { display: grid; grid-template-columns: 1fr; gap: 2px; margin: 6px 0; }
+.item-facts div { display: flex; gap: 8px; }
+.item-facts dt { font-weight: 600; min-width: 78px; }
+.item-facts dd { margin: 0; }
+.why { display: block; margin-top: 4px; padding: 6px 8px; background: #fdecdf; border-radius: 4px; }
+.actions { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0; align-items: center; }
+.inline-form { display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: flex-end; padding: 10px; background: var(--lavender-light); border-radius: 6px; margin: 8px 0; }
+.inline-form label { display: flex; flex-direction: column; gap: 4px; font-weight: 600; }
+.change-line { margin: 6px 0; overflow-wrap: anywhere; }
+.change-line.not-applied { text-decoration: line-through; color: #555; }
+.new-row { display: grid; grid-template-columns: max-content 1fr; gap: 2px 10px; margin: 4px 0; }
+.new-row div { display: contents; }
+.new-row dt { font-weight: 600; }
+.new-row dd { margin: 0; overflow-wrap: anywhere; }
+.inline-form label.wide { flex-basis: 100%; }
+.status { margin: 4px 0; }
+.status:empty { margin: 0; }
+.stub { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; padding: 10px 14px; margin: 10px 0;
+  border: 1px dashed #8a8ea3; border-radius: 8px; background: var(--grey); }
+.item-card { scroll-margin-top: 12px; }
+.item-card:target { outline: 3px solid var(--purple); outline-offset: 2px; }
+.tech { display: block; font-size: 0.8rem; color: #555; }
+.nowrap { white-space: nowrap; }
+.flag-box { border: 1px dashed #8a8ea3; border-radius: 8px; padding: 10px 12px; margin: 10px 0; background: var(--lavender-light); }
+.account { border-top: 1px solid var(--lavender); padding-top: 6px; }
+
+.source-panel { margin-top: 10px; padding: 10px 12px; border: 1px solid var(--lavender); border-radius: 6px; background: var(--lavender-light); }
+.source-meta { margin: 0 0 8px; font-weight: 600; overflow-wrap: anywhere; }
+.message { background: #fff; border: 1px solid var(--lavender); border-radius: 6px; padding: 8px 10px; margin: 8px 0; }
+.message.holds-quote { border-color: var(--purple-button); }
+.msg-header { font-size: 0.85rem; color: #333; margin-bottom: 6px; overflow-wrap: anywhere; }
+.msg-body { white-space: pre-wrap; overflow-wrap: anywhere; }
+mark { background: var(--amber); color: var(--navy); padding: 0 2px; outline: 2px solid #c9a100; }
+
+@media (min-width: 760px) {
+  .item-facts { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  /* A compact header, so the North Star tile shows on the first phone screen. */
+  .band { padding: 8px 12px 0; }
+  .band-top { gap: 6px 10px; }
+  .brand-row { flex-basis: 100%; gap: 8px; }
+  .brand-row .logo-plate img { width: 72px; height: auto; }
+  .product { font-size: 0.95rem; }
+  .meta-row { flex-basis: 100%; gap: 6px; }
+  .meta-row .label, .meta-row .chip { font-size: 0.72rem; padding: 0 6px; }
+  .name-picker { flex-basis: 100%; gap: 6px; }
+  .name-picker .hint { display: none; }
+  .band nav ul { flex-wrap: nowrap; overflow-x: auto; margin-top: 4px; scrollbar-width: thin; }
+  .band nav li { flex: 0 0 auto; }
+  h1 { margin: 4px 0 8px; font-size: 1.35rem; }
+  /* Wide tables stack on a phone: each row becomes a block and each cell names its column. */
+  .stack-table thead { position: absolute; left: -9999px; }
+  .stack-table tr { display: block; border-bottom: 2px solid var(--lavender); padding: 6px 0; }
+  .stack-table td { display: block; border: 0; padding: 3px 8px; }
+  .stack-table td::before { content: attr(data-label) ": "; font-weight: 600; }
+  .stack-table th[scope="row"] { display: block; border: 0; padding: 6px 8px 0; background: none; }
+  .nowrap { white-space: normal; }
+  /* Links that stand alone get a full tap target on a phone. */
+  a.tap { display: inline-flex; align-items: center; min-height: 44px; }
+  /* The menu wraps to a second row on a phone, so every entry shows without scrolling. */
+  .band nav ul { gap: 2px; flex-wrap: wrap; overflow-x: visible; }
+  .name-picker { margin-left: 0; }
+  .band nav a { padding: 0 7px; font-size: 0.88rem; }
+  main { padding: 16px; }
+}
+/* Quick capture. */
+.capture-form { display: flex; flex-direction: column; gap: 6px; margin: 8px 0; }
+.capture-form label { font-weight: 600; }
+.capture-form input[type="password"] { max-width: 320px; width: 100%; }
+.capture-form .too-long { color: #8a1c1c; font-weight: 600; }
+.capture-result:focus { outline: 3px solid var(--purple); outline-offset: 2px; }
+.source-caption { margin: 0 0 6px; color: #333; font-style: italic; }

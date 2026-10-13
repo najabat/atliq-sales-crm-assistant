@@ -1,0 +1,27 @@
+# What the laptop does not upload to Vercel. Everything else is uploaded.
+# The site needs data/dataset and data/results, so they are not listed here.
+# This file exists so the upload does not depend on .gitignore, which hides the data from GitHub.
+
+.env*
+*.pem
+.git
+node_modules
+.next
+eval/answer_key.json
+eval/ANSWER_KEY.md
+eval/OPEN_LABELS.md
+eval/cases.json
+eval/report*.json
+eval/reports
+eval/fixtures
+eval/make_fixture.mjs
+data/results/*/run_log.jsonl
+START_HERE.md
+docs/PRD.md
+
+# Stored model answers and other run files hold raw model output. They stay on the laptop (D18).
+# The site needs only data/results/current.json.
+data/results/*/
+
+# Local screenshots show course data. They are never uploaded.
+screenshots/

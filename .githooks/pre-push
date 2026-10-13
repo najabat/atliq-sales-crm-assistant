@@ -1,0 +1,4 @@
+#!/bin/sh
+# Stops a push when a tracked file holds course data. See scripts/guard.mjs.
+echo "pre-push: running the guard"
+npm run --silent guard || { echo "pre-push: guard failed, push stopped"; exit 1; }

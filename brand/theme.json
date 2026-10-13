@@ -1,0 +1,85 @@
+{
+  "source": "Logo file and two website screenshots supplied by Najabat on 6 October 2026, plus the capstone brief",
+  "label": "Capstone Prototype",
+  "logo": {
+    "svg": "brand/atliq_logo.svg",
+    "png": "brand/atliq_logo.png",
+    "rule": "placed as supplied, never redrawn"
+  },
+  "colors": {
+    "navy": {
+      "hex": "#061033",
+      "from": "logo fill and site footer",
+      "use": "titles, header bands, body text on light"
+    },
+    "purple": {
+      "hex": "#602BE9",
+      "from": "logo wordmark",
+      "use": "accents, links, active state"
+    },
+    "purple_button": {
+      "hex": "#5A39EB",
+      "from": "site button",
+      "use": "primary button in the prototype"
+    },
+    "purple_gradient": {
+      "hex": "#6711FF to #9963FF",
+      "from": "logo mark",
+      "use": "hero or cover only"
+    },
+    "lavender": {
+      "hex": "#DED9EF",
+      "from": "site panel",
+      "use": "section bands, highlighted rows"
+    },
+    "green": {
+      "hex": "#2E8B57",
+      "from": "capstone brief",
+      "use": "measured, fact, done. Fills and icons"
+    },
+    "green_text": {
+      "hex": "#23774A",
+      "from": "brief green, darkened for contrast",
+      "use": "green text on white"
+    },
+    "blue": {
+      "hex": "#2E75B6",
+      "from": "capstone brief",
+      "use": "input values"
+    },
+    "grey": {
+      "hex": "#F2F2F2",
+      "from": "capstone brief",
+      "use": "calculated, neutral"
+    },
+    "amber": {
+      "hex": "#FFE699",
+      "from": "functional, not a brand colour",
+      "use": "estimate, to review"
+    },
+    "red_light": {
+      "hex": "#F8CBAD",
+      "from": "functional, not a brand colour",
+      "use": "open, risk"
+    }
+  },
+  "contrast_checked": {
+    "white on navy": 18.6,
+    "white on purple": 6.9,
+    "navy on lavender": 13.5,
+    "green_text on white": 5.5,
+    "blue on white": 4.8
+  },
+  "hierarchy": {
+    "title_banner": "navy fill, white bold text. Logo sits on white to its left",
+    "section_band": "navy fill, white bold text",
+    "sub_section_band": "purple fill, white bold text",
+    "column_header": "lavender fill, navy bold text",
+    "total_or_key_row": "light lavender #EDEAF7 fill, bold",
+    "body": "white fill, navy text",
+    "inputs": "blue text",
+    "from_another_sheet": "green text",
+    "estimate_or_open": "amber fill"
+  },
+  "applies_to": "every capstone artifact. Excel, Word, deck, Miro banner and the prototype"
+}
