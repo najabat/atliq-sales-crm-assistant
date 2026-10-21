@@ -6,9 +6,18 @@ import NavMenu from "./_components/NavMenu";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://atliq-sales-crm-assistant-five.vercel.app"),
   title: "AtliQ Sales & CRM Assistant",
-  description: "Capstone Prototype",
+  description: "No customer should wait more than 7 days for a reply. AI extracts promises from email and call notes, rules set dates and order, sellers approve every change. Capstone prototype on synthetic data.",
   robots: { index: false, follow: false },
+  openGraph: {
+    title: "AtliQ Sales & CRM Assistant",
+    description: "No customer should wait more than 7 days for a reply. AI extracts, rules decide, sellers approve. Capstone prototype on synthetic data.",
+    url: "/",
+    siteName: "AtliQ Sales & CRM Assistant",
+    type: "website",
+  },
+  twitter: { card: "summary_large_image" },
 };
 
 // Accounts joins the menu in its own slice, if time is left.
