@@ -40,6 +40,8 @@ a { color: var(--purple); }
 .name-picker { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-left: auto; }
 .name-picker label { font-weight: 600; }
 .name-picker .hint { color: #d8d8ef; font-size: 0.8rem; }
+.band .label { border: 2px solid #fff; font-weight: 600; letter-spacing: 0.02em; background: rgba(255, 255, 255, 0.1); }
+@media (min-width: 601px) and (max-width: 1199px) { .name-picker .hint { display: none; } }
 .band nav ul { display: flex; flex-wrap: wrap; gap: 4px; list-style: none; margin: 8px 0 0; padding: 0; }
 .band nav a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 12px; color: #fff; text-decoration: none; border-radius: 6px 6px 0 0; }
 .band nav a:hover { background: rgba(255, 255, 255, 0.12); text-decoration: underline; }
