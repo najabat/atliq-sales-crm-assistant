@@ -27,6 +27,7 @@ const MENU = [
   { href: "/crm", label: "CRM changes" },
   { href: "/capture", label: "Quick capture" },
   { href: "/how-it-works", label: "How it works" },
+  { href: "/about", label: "About" },
 ];
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -54,6 +55,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main id="main">{children}</main>
         <footer className="site-footer">
           <p>Capstone prototype for the Codebasics AI PM cohort, built for AtliQ Technologies as the case study client. Not an official AtliQ product. Synthetic data.</p>
+          <p>Product managed by <a href="https://www.linkedin.com/in/najabatalikhan">Najabat Ali Khan</a>, AI Product Manager. <a href="/about">About this build</a>.</p>
         </footer>
       </body>
     </html>
